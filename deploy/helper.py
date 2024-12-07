@@ -1,12 +1,28 @@
 from datetime import datetime as dt
+import logging
 import os
 import time
 
-import psycopg2
+from dotenv import load_dotenv
+import psycopg
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+def setup_logger(logging: logging) -> None:
+	"""
+	Setup logger with function name identifier
+
+		param:
+			func_name (str): name of the function where the logger was executed
+	"""
+	logging.basicConfig(
+		level=logging.DEBUG,
+		format="{asctime} - ({filename}: {funcName}) -> {message}",
+		style="{",
+		datefmt="%Y-%m-%d %H:%m:%S"
+	)
 
 def provide_scraping_result_dict(
 	web_url: str,
@@ -249,7 +265,6 @@ def get_webdriver() -> webdriver:
 
 	driver.switch_to.window(driver.window_handles[1])
 	driver.close()
-
 
 	# switch back to first tab
 	driver.switch_to.window(driver.window_handles[0])
