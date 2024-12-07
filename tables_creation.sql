@@ -14,10 +14,9 @@ CREATE TABLE error_report(
 
 CREATE TABLE dataset(
 	web_url TEXT PRIMARY KEY,
-	scraping_time TIMESTAMP NOT NULL,
 	is_gambling_site BOOLEAN NOT NULL
 );
 
-COMMENT ON TABLE dataset is 'contains data from manual scraping for modeling';
+COMMENT ON TABLE dataset IS 'contains data from manual scraping for modeling';
 
 COMMIT;
